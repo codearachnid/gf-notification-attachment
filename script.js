@@ -19,14 +19,16 @@ jQuery( document ).ready(function(){
 	// add remove events
 	element.find('.remove').on('click',function( event ){
 		event.preventDefault();
-		var attachment = jQuery(this).parent();
-		var index = attachment_ids.indexOf( attachment.data('id') );
-		if ( index > -1 ) {
-		    attachment_ids.splice( index, 1 );
-		    element.find('.attachment_ids').val( JSON.stringify( attachment_ids ) );
+		if( confirm( "Are you sure you wish to remove this attachment?" ) ){
+			var attachment = jQuery(this).parent();
+			var index = attachment_ids.indexOf( attachment.data('id') );
+			if ( index > -1 ) {
+			    attachment_ids.splice( index, 1 );
+			    element.find('.attachment_ids').val( JSON.stringify( attachment_ids ) );
+			}
+			// remove the attachment from the DOM list
+			attachment.remove();
 		}
-		// remove the attachment from the DOM list
-		attachment.remove();
 	});
 
 	// add attachment event
