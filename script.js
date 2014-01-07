@@ -11,11 +11,7 @@ jQuery( document ).ready(function(){
 	var attachment_ids = jQuery.parseJSON( element.find('.attachment_ids').val() );
 
 	// convert the attachment_ids from objects to arrays
-	if( typeof attachment_ids == 'object' )
-		attachment_ids = attachment_ids != null ? 
-			jQuery.map( attachment_ids, function(value, index){ 
-				return value;
-			}) : [];
+	attachment_ids = jQuery.makeArray( attachment_ids );
 
 	if( element.find('.details li').length > 0 )
 		element.show();
