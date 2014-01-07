@@ -1,6 +1,13 @@
 Gravity Forms: Notifications Attachment
 ==========================
+*This plugin requires Gravity Forms by RocketGenius to be active.*
 
-A WordPress addon for Gravity Forms to add attachments to notification emails.
+	A WordPress addon for Gravity Forms to add attachments to notification emails. 
 
-#####Note: A rough work in progress.
+An active form with notifications must be available to  In order to add attachments to notification you must select them through the media modal, once listed save the notification to attach during notification triggers. This plugin uses the core WordPress and Gravity Forms methods to attach and send notification emails. You are responsible for ensuring your server environment can successfully send.
+
+	Note: When WP_DEBUG is active the script will use the unminified version of the script.
+
+
+#### Known Issues:
+* GoDaddy and other shared server environments may block wp_mail from sending attachments.
