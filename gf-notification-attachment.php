@@ -126,7 +126,9 @@ function gf_notification_attachment_editor( $ui_settings, $notification, $form )
 function gf_notification_attachment_get_meta( $attachment_id  ) {
 
 	$attachment = get_post( $attachment_id );
-	$image = wp_get_attachment_image_src( $attachment_id, array(100,100), true )[0]; 
+	$image = wp_get_attachment_image_src( $attachment_id, array(100,100), true ); 
+	if( !empty( $image ) )
+		$image = $image[0];
 	//$image = wp_mime_type_icon( $attachment->post_mime_type );
 
 	return (object) apply_filters( 'gf_notification_attachment_get_meta', array(
