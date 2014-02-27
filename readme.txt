@@ -15,6 +15,8 @@ An active form with notifications must be available to  In order to add attachme
 
 *This plugin requires Gravity Forms by RocketGenius to be active.*
 
+This plugin is [actively maintained on GitHub](http://codearachnid.github.io/gf-notification-attachment/). I welcome your pull requests, comments and suggestions for improvement
+
 == Installation ==
 Installing the plugin is easy. Just follow these steps:
 
