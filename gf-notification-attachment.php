@@ -2,9 +2,9 @@
 /* 
 
 Plugin Name: Gravity Forms: Notification Attachments
-Plugin URI: 
+Plugin URI: http://codearachnid.github.io/gf-notification-attachment/
 Description: An addon for Gravity Forms to add attachments to notification emails
-Version: 1.1hf
+Version: 1.2
 Author: Timothy Wood (@codearachnid)
 Author URI: http://codearachnid.com
 Text Domain: gf_notification_attachment
