@@ -54,10 +54,16 @@ function gf_notification_attachment_ajax(){
  * @return array
  */
 function gf_notification_attachment_send( $notification, $form, $lead ){
-	$attachment = wp_get_attachment_metadata( $notification['attachment_id'] );
+	$attachment_id_raw = esc_attr( rgar( $notification, "attachment_id" ) );
+	$attachment_ids = (array) json_decode( $attachment_id_raw );
 	$wp_upload_dir = wp_upload_dir();
-	if( !empty( $attachment['file'] ) ) {
-		$notification['attachments'][] = trailingslashit( $wp_upload_dir['basedir'] ) . $attachment['file'];
+	if( !empty( $attachment_ids ) ) {
+		foreach( $attachment_ids as $attachment_id ){
+			$attachment = wp_get_attachment_url( $attachment_id );
+			if( !empty( $attachment ) ){
+				$notification['attachments'][] = str_replace( $wp_upload_dir['baseurl'], $wp_upload_dir['basedir'], $attachment );
+			}
+		}
 		return $notification;
 	} else {
 		return;
