@@ -13,6 +13,10 @@ An active form with notifications must be available to  In order to add attachme
 	Note: When WP_DEBUG is active the script will use the unminified version of the script.
 
 ### Changelog:
+#### = 1.3 =
+
+* fixed filter handling for no attachment emails (thanks to @mathijsbok)
+
 #### = 1.2 =
 
 * refactored `gf_notification_attachment_send` to filter the attachment id array through wp_get_attachment_url for server compatibility
