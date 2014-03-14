@@ -4,7 +4,7 @@ Tags: gravityforms, forms, attachment, email, notification
 Donate link: http://example.com/
 Requires at least: 3.7
 Tested up to: 3.8
-Stable tag: 1.2
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,6 +36,9 @@ When WP_DEBUG is active the script will use the unminified version of the script
 1. The plugin adds logic to the notification edit screen.
 
 == Changelog ==
+= 1.3 =
+* fixed filter handling for no attachment emails (thanks to @mathijsbok)
+
 = 1.2 =
 * refactored `gf_notification_attachment_send` to filter the attachment id array through wp_get_attachment_url for server compatibility
 (https://gist.github.com/codearachnid/9537604)
