@@ -12,6 +12,19 @@ An active form with notifications must be available to  In order to add attachme
 
 	Note: When WP_DEBUG is active the script will use the unminified version of the script.
 
+### Changelog:
+#### = 1.2 =
+
+* refactored `gf_notification_attachment_send` to filter the attachment id array through wp_get_attachment_url for server compatibility
+[More Technical Detail](https://gist.github.com/codearachnid/9537604)
+
+#### = 1.1hf = 
+
+* fixed issue with referencing empty array on blank meta
+
+#### = 1.0 =
+
+* Initial release.
 
 #### Known Issues:
 * GoDaddy and other shared server environments may block wp_mail from sending attachments.
