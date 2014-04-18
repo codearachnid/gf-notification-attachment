@@ -12,7 +12,19 @@ An active form with notifications must be available to  In order to add attachme
 
 	Note: When WP_DEBUG is active the script will use the unminified version of the script.
 
+### Credits:
+
+Thanks to the following users for making the plugin better!
+
+* @saxonycreative
+* @mathijsbok
+
 ### Changelog:
+#### = 1.4 =
+
+* fixed Gravity Forms from being greedy to remove the js script for plugin no conflict mode (thanks to @saxonycreative)
+* tested compatible to WordPress v3.9
+
 #### = 1.3 =
 
 * fixed filter handling for no attachment emails (thanks to @mathijsbok)

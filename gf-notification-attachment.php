@@ -4,7 +4,7 @@
 Plugin Name: Gravity Forms: Notification Attachments
 Plugin URI: http://codearachnid.github.io/gf-notification-attachment/
 Description: An addon for Gravity Forms to add attachments to notification emails
-Version: 1.3
+Version: 1.4
 Author: Timothy Wood (@codearachnid)
 Author URI: http://codearachnid.com
 Text Domain: gf_notification_attachment
@@ -14,11 +14,13 @@ Text Domain: gf_notification_attachment
 global $gf_notification_attachment;
 
 add_action( 'init', 'gf_notification_attachment_init' );
-add_action( 'wp_ajax_gf_notification_attachment', 'gf_notification_attachment_ajax' );
+add_filter('gform_noconflict_scripts', 'gf_notification_attachment_gform_noconflict' );
 add_filter( 'gform_notification', 'gf_notification_attachment_send', 20, 3 );
 add_filter( 'gform_pre_notification_save', 'gf_notification_attachment_save', 20, 2 );
 add_filter( 'gform_notification_ui_settings', 'gf_notification_attachment_editor', 20, 3 );
 add_action( 'admin_enqueue_scripts', 'gf_notification_attachment_attach_script');
+add_action( 'wp_ajax_gf_notification_attachment', 'gf_notification_attachment_ajax' );
+
 
 /**
  * [gf_notification_attachment_init description]
@@ -162,3 +164,17 @@ function gf_notification_attachment_attach_script(){
 		wp_enqueue_style( $plugin->text_domain, $plugin->plugin_url . 'style.css', array(), $plugin->version );			
 	}
 }
+
+/**
+ * [gf_notification_attachment_gform_noconflict description]
+ * prevent Gravity Forms from being greedy to remove our scripts in no conflict mode
+ * 
+ * @return array
+ */
+function gf_notification_attachment_gform_noconflict($allowed_script_keys){
+	global $gf_notification_attachment;
+	$plugin = $gf_notification_attachment;
+	$allowed_script_keys[] = $plugin->text_domain;
+	return $allowed_script_keys;
+}
+

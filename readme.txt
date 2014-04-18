@@ -3,8 +3,8 @@ Contributors: codearachnid
 Tags: gravityforms, forms, attachment, email, notification
 Donate link: http://example.com/
 Requires at least: 3.7
-Tested up to: 3.8
-Stable tag: 1.3
+Tested up to: 3.9
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,6 +16,11 @@ An active form with notifications must be available to  In order to add attachme
 *This plugin requires Gravity Forms by RocketGenius to be active.*
 
 This plugin is [actively maintained on GitHub](http://codearachnid.github.io/gf-notification-attachment/). I welcome your pull requests, comments and suggestions for improvement
+
+Thanks to the following users for making the plugin better!
+
+* @saxonycreative
+* @mathijsbok
 
 == Installation ==
 Installing the plugin is easy. Just follow these steps:
@@ -36,6 +41,10 @@ When WP_DEBUG is active the script will use the unminified version of the script
 1. The plugin adds logic to the notification edit screen.
 
 == Changelog ==
+= 1.4 =
+* fixed Gravity Forms from being greedy to remove the js script for plugin in no conflict mode (thanks to @saxonycreative)
+* tested compatible to WordPress v3.9
+
 = 1.3 =
 * fixed filter handling for no attachment emails (thanks to @mathijsbok)
 
