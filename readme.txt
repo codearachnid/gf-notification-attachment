@@ -4,7 +4,7 @@ Tags: gravityforms, forms, attachment, email, notification
 Donate link: http://example.com/
 Requires at least: 3.7
 Tested up to: 3.9
-Stable tag: 1.4
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,9 @@ When WP_DEBUG is active the script will use the unminified version of the script
 1. The plugin adds logic to the notification edit screen.
 
 == Changelog ==
+= 1.5 =
+* added Gravity Forms requirement check and notification if not found
+
 = 1.4 =
 * fixed Gravity Forms from being greedy to remove the js script for plugin in no conflict mode (thanks to @saxonycreative)
 * tested compatible to WordPress v3.9

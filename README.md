@@ -20,6 +20,10 @@ Thanks to the following users for making the plugin better!
 * @mathijsbok
 
 ### Changelog:
+#### = 1.5 =
+
+* added Gravity Forms requirement check and notification if not found
+
 #### = 1.4 =
 
 * fixed Gravity Forms from being greedy to remove the js script for plugin no conflict mode (thanks to @saxonycreative)

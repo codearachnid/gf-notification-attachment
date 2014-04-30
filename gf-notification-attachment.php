@@ -4,7 +4,7 @@
 Plugin Name: Gravity Forms: Notification Attachments
 Plugin URI: http://codearachnid.github.io/gf-notification-attachment/
 Description: An addon for Gravity Forms to add attachments to notification emails
-Version: 1.4
+Version: 1.5
 Author: Timothy Wood (@codearachnid)
 Author URI: http://codearachnid.com
 Text Domain: gf_notification_attachment
@@ -14,13 +14,6 @@ Text Domain: gf_notification_attachment
 global $gf_notification_attachment;
 
 add_action( 'init', 'gf_notification_attachment_init' );
-add_filter('gform_noconflict_scripts', 'gf_notification_attachment_gform_noconflict' );
-add_filter( 'gform_notification', 'gf_notification_attachment_send', 20, 3 );
-add_filter( 'gform_pre_notification_save', 'gf_notification_attachment_save', 20, 2 );
-add_filter( 'gform_notification_ui_settings', 'gf_notification_attachment_editor', 20, 3 );
-add_action( 'admin_enqueue_scripts', 'gf_notification_attachment_attach_script');
-add_action( 'wp_ajax_gf_notification_attachment', 'gf_notification_attachment_ajax' );
-
 
 /**
  * [gf_notification_attachment_init description]
@@ -28,12 +21,32 @@ add_action( 'wp_ajax_gf_notification_attachment', 'gf_notification_attachment_aj
  */
 function gf_notification_attachment_init(){
 	global $gf_notification_attachment;
-	$gf_notification_attachment = (object) array(
-		'text_domain' => 'gf-notification-attachment',
-		'version' => '1.0',
-		'plugin_url' => trailingslashit( plugin_dir_url( __FILE__ ) )
-		);
-	return $gf_notification_attachment;
+
+	if( class_exists('GFForms') ) {
+		add_filter( 'gform_noconflict_scripts', 'gf_notification_attachment_gform_noconflict' );
+		add_filter( 'gform_notification', 'gf_notification_attachment_send', 20, 3 );
+		add_filter( 'gform_pre_notification_save', 'gf_notification_attachment_save', 20, 2 );
+		add_filter( 'gform_notification_ui_settings', 'gf_notification_attachment_editor', 20, 3 );
+		add_action( 'admin_enqueue_scripts', 'gf_notification_attachment_attach_script');
+		add_action( 'wp_ajax_gf_notification_attachment', 'gf_notification_attachment_ajax' );
+
+		$gf_notification_attachment = (object) array(
+			'text_domain' => 'gf-notification-attachment',
+			'version' => '1.0',
+			'plugin_url' => trailingslashit( plugin_dir_url( __FILE__ ) )
+			);
+		return $gf_notification_attachment;
+	} else {
+		add_action( 'admin_notices', 'gf_notification_attachment_admin_notices' );
+	}
+}
+
+function gf_notification_attachment_admin_notices(){
+	?>
+    <div class="error">
+        <p><?php _e( 'You must have Gravity Forms activated in order to use Notification Attachments.', 'gf_notification_attachment' ); ?></p>
+    </div>
+    <?php
 }
 
 function gf_notification_attachment_ajax(){
@@ -77,7 +90,10 @@ function gf_notification_attachment_send( $notification, $form, $lead ){
  * @return array
  */
 function gf_notification_attachment_save( $notification, $form ){
-	$notification["attachment_id"] = rgpost("gform_notification_attachment_id");
+	
+	if( function_exists( 'rgpost' ) )
+		$notification["attachment_id"] = rgpost("gform_notification_attachment_id");
+
 	return $notification;
 }
 
@@ -157,11 +173,14 @@ function gf_notification_attachment_get_meta( $attachment_id  ) {
 function gf_notification_attachment_attach_script(){
 	global $gf_notification_attachment;
 	$plugin = $gf_notification_attachment;
-	if( GFForms::get_page() == 'notification_edit'){
-		$script = $plugin->plugin_url . 'script';
-		$script .= ( WP_DEBUG ) ? '.js' : '.min.js';
-		wp_enqueue_script( $plugin->text_domain, $script, array('gform_gravityforms'), $plugin->version, true );
-		wp_enqueue_style( $plugin->text_domain, $plugin->plugin_url . 'style.css', array(), $plugin->version );			
+
+	if( class_exists( 'GFForms' ) ) {
+		if( GFForms::get_page() == 'notification_edit'){
+			$script = $plugin->plugin_url . 'script';
+			$script .= ( WP_DEBUG ) ? '.js' : '.min.js';
+			wp_enqueue_script( $plugin->text_domain, $script, array( 'gform_gravityforms' ), $plugin->version, true );
+			wp_enqueue_style( $plugin->text_domain, $plugin->plugin_url . 'style.css', array(), $plugin->version );			
+		}
 	}
 }
 
@@ -171,7 +190,7 @@ function gf_notification_attachment_attach_script(){
  * 
  * @return array
  */
-function gf_notification_attachment_gform_noconflict($allowed_script_keys){
+function gf_notification_attachment_gform_noconflict( $allowed_script_keys ){
 	global $gf_notification_attachment;
 	$plugin = $gf_notification_attachment;
 	$allowed_script_keys[] = $plugin->text_domain;
