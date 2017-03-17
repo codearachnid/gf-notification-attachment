@@ -7,11 +7,15 @@ Description: An addon for Gravity Forms to add attachments to notification email
 Version: 1.3
 Author: Timothy Wood (@codearachnid)
 Author URI: http://codearachnid.com
-Text Domain: gf_notification_attachment
+Text Domain: gravity-forms-notification-attachments
 
 */
 
 global $gf_notification_attachment;
+
+
+//Loads translation
+load_plugin_textdomain('gravity-forms-notification-attachments', false, dirname( plugin_basename( __FILE__ ) ). '/languages/');
 
 add_action( 'init', 'gf_notification_attachment_init' );
 add_action( 'wp_ajax_gf_notification_attachment', 'gf_notification_attachment_ajax' );
@@ -97,7 +101,7 @@ function gf_notification_attachment_editor( $ui_settings, $notification, $form )
 		<tr valign="top">
             <th scope="row">
                 <label for="gform_notification_attachment">
-                    <?php _e("Attachments", "gf_notification_attachment"); ?>
+                    <?php _e("Attachments", "gravity-forms-notification-attachments"); ?>
                 </label>
             </th>
             <td id="gform_notification_attachment">
@@ -115,8 +119,8 @@ function gf_notification_attachment_editor( $ui_settings, $notification, $form )
 	                <?php endforeach; ?>           	
                 </ul>
                 <input type="hidden" name="gform_notification_attachment_id" id="gform_notification_attachment_id" class="attachment_ids" value="<?php echo $attachment_id_raw; ?>" />
-            	<a href="#" class="button add gform_notification_attachment" title="<?php _e('Add Attachment', 'gf-notification-attachment'); ?>">
-            		<?php _e('Add Attachment', 'gf-notification-attachment'); ?>
+            	<a href="#" class="button add gform_notification_attachment" title="<?php _e('Add Attachment', 'gravity-forms-notification-attachments'); ?>">
+            		<?php _e('Add Attachment', 'gravity-forms-notification-attachments'); ?>
             	</a>
             </td>
         </tr> <!-- / notification attachment -->
