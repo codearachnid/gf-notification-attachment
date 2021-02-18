@@ -48,7 +48,7 @@ function gf_notification_attachment_init(){
 function gf_notification_attachment_admin_notices(){
 	?>
     <div class="error">
-        <p><?php _e( 'You must have Gravity Forms activated in order to use Notification Attachments.', 'gf_notification_attachment' ); ?></p>
+        <p><?php _e( 'You must have Gravity Forms activated in order to use Notification Attachments.', 'gravity-forms-notification-attachments' ); ?></p>
     </div>
     <?php
 }
