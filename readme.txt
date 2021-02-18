@@ -3,7 +3,7 @@ Contributors: codearachnid
 Tags: gravityforms, forms, attachment, email, notification
 Donate link: http://example.com/
 Requires at least: 3.7
-Tested up to: 3.9
+Tested up to: 4.6.1
 Stable tag: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
