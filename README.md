@@ -2,6 +2,8 @@ Gravity Forms: Notifications Attachment
 ==========================
 *This plugin requires Gravity Forms by RocketGenius to be active.*
 
+Tested up to v2.4.22.5 of Gravity Forms.
+
 Download from [WordPress.org plugin repo](http://wordpress.org/plugins/gravity-forms-notification-attachments/) or the [plugin homepage](http://codearachnid.github.io/gf-notification-attachment/).
 
 	A WordPress addon for Gravity Forms to add attachments to notification emails. 
@@ -18,8 +20,17 @@ Thanks to the following users for making the plugin better!
 
 * @saxonycreative
 * @mathijsbok
+* @ollycross
+* @davidperezgar
+* @hubdotcom
 
 ### Changelog:
+#### = 1.6 =
+
+* added translation updates (thanks @davidperezgar)
+* fixed js compat for array going forward (thanks @ollycross)
+* updated working versions tested (thanks @hubdotcom)
+
 #### = 1.5 =
 
 * added Gravity Forms requirement check and notification if not found
