@@ -8,7 +8,7 @@
 var gform_notification_attachment;
 jQuery( document ).ready(function(){
 	var element = jQuery('#gform_notification_attachment');
-	var attachment_ids = jQuery.parseJSON( element.find('.attachment_ids').val() );
+	var attachment_ids = jQuery.parseJSON( element.find('.attachment_ids').val() || '[]' );
 
 	// convert the attachment_ids from objects to arrays
 	attachment_ids = jQuery.makeArray( attachment_ids );
